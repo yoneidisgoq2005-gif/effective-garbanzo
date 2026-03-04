@@ -239,76 +239,102 @@ a{color:inherit;}
 /* ─── SERVICES HEADER ─── */
 .svc-hdr{
   padding:56px 6vw 36px;background:var(--ivory2);
-  text-align:center;position:relative;
-  overflow:hidden;
+  text-align:center;position:relative;overflow:hidden;
 }
 @media screen and (min-width:768px){.svc-hdr{padding:80px 8vw 44px;}}
 .svc-hdr .label-tag{-webkit-justify-content:center;justify-content:center;margin-bottom:12px;}
 .svc-hdr-h{font-size:2.4rem;}
 @media screen and (min-width:768px){.svc-hdr-h{font-size:4rem;}}
 
-/* ─── SERVICE CARDS (stacked list, one per row on mobile) ─── */
-.svc-list{border-top:1px solid var(--pearl);}
-
-.svc{
-  background:var(--ivory);
-  padding:32px 6vw;
-  border-bottom:1px solid var(--pearl);
-  position:relative;
-}
-@media screen and (min-width:768px){.svc{padding:40px 8vw;}}
-
-/* corner triangle */
-.svc-corner{
-  position:absolute;top:0;right:0;
-  width:0;height:0;border-style:solid;
-  border-width:0 44px 44px 0;
-  border-color:transparent var(--rose-p) transparent transparent;
-}
-
-.svc-badge{
-  font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--rose);font-weight:500;display:block;margin-bottom:8px;
-}
-.svc-name{
-  font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;
-  font-weight:400;color:var(--ch);line-height:1.1;margin-bottom:10px;
-}
-.svc-desc{font-size:.75rem;color:var(--mu);line-height:1.85;font-weight:300;margin-bottom:16px;}
-.svc-price-row{padding-top:14px;border-top:1px solid var(--pearl);}
-.svc-price{
-  font-family:'Cormorant Garamond',serif;font-size:2.3rem;
-  font-weight:300;color:var(--ch);line-height:1;
-}
-.svc-price-cop{font-size:.88rem;color:var(--gold);font-style:italic;font-weight:300;}
-.svc-pills{
+/* ─── SERVICE CARD GRID ─── */
+.sc-grid{
   display:-webkit-flex;display:flex;
   -webkit-flex-wrap:wrap;flex-wrap:wrap;
-  margin-top:10px;
+  background:var(--pearl);
+  gap:1px;
+}
+.sc{
+  background:var(--ivory);
+  padding:40px 32px;
+  position:relative;overflow:hidden;
+  display:-webkit-flex;display:flex;
+  -webkit-flex-direction:column;flex-direction:column;
+  gap:16px;
+  -webkit-flex:1 1 280px;flex:1 1 280px;
+  min-width:0;
+  -webkit-transition:background .3s;transition:background .3s;
+}
+.sc:hover{background:var(--ivory2);}
+
+.sc-corner{
+  position:absolute;top:0;right:0;
+  width:0;height:0;border-style:solid;
+  border-width:0 50px 50px 0;
+  border-color:transparent var(--rose-p) transparent transparent;
+  -webkit-transition:border-color .3s;transition:border-color .3s;
+}
+.sc:hover .sc-corner{border-color:transparent var(--rose-l) transparent transparent;}
+
+.sc-badge{
+  font-size:.52rem;letter-spacing:.33em;text-transform:uppercase;
+  color:var(--rose);font-weight:500;
+  display:-webkit-inline-flex;display:inline-flex;
+  -webkit-align-items:center;align-items:center;gap:10px;
+}
+.sc-badge::before{content:'';display:inline-block;width:14px;height:1px;background:var(--rose);}
+
+.sc-name{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-style:italic;font-weight:400;color:var(--ch);line-height:1.1;}
+.sc-desc{font-size:.75rem;color:var(--mu);line-height:1.85;font-weight:300;}
+
+.sc-price-block{margin-top:auto;padding-top:18px;border-top:1px solid var(--pearl);}
+.sc-price{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--ch);line-height:1;}
+.sc-price-cop{font-size:.9rem;color:var(--gold);font-style:italic;font-weight:300;}
+
+.sc-pills{
+  display:-webkit-flex;display:flex;
+  -webkit-flex-wrap:wrap;flex-wrap:wrap;
+  margin-top:10px;gap:8px;
 }
 .pill{
   background:var(--ivory2);border:1px solid var(--pearl2);
-  padding:5px 10px;margin-right:7px;margin-bottom:6px;
-  font-size:.59rem;color:var(--mu);
+  padding:5px 11px;font-size:.59rem;color:var(--mu);
   display:-webkit-flex;display:flex;
   -webkit-flex-direction:column;flex-direction:column;
-  gap:1px;
+  gap:2px;
+  -webkit-transition:border-color .25s;transition:border-color .25s;
 }
+.sc:hover .pill{border-color:var(--rose-l);}
 .pill strong{color:var(--rose);font-weight:500;font-size:.68rem;}
 
-/* Featured service */
-.svc-feat{
-  background:var(--rose-p);
+/* Featured card — full width */
+.sc-feat{
+  -webkit-flex:1 1 100%;flex:1 1 100%;
+  -webkit-flex-direction:row;flex-direction:row;
+  -webkit-align-items:center;align-items:center;
+  gap:48px;
   background:-webkit-linear-gradient(140deg,var(--rose-p) 0%,var(--ivory) 65%);
   background:linear-gradient(140deg,var(--rose-p) 0%,var(--ivory) 65%);
   border-top:2px solid var(--rose-l);
 }
+.sc-feat:hover{background:-webkit-linear-gradient(140deg,#ecdadb 0%,var(--ivory2) 65%);background:linear-gradient(140deg,#ecdadb 0%,var(--ivory2) 65%);}
+.sc-feat .sc-name{font-size:2.6rem;}
+.sc-feat .sc-price{font-size:3rem;}
 .feat-badge{
   display:inline-block;background:var(--rose);color:#fff;
   font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;
-  padding:4px 12px;margin-bottom:10px;font-weight:500;
+  padding:4px 12px;margin-bottom:12px;font-weight:500;
 }
-.svc-feat .svc-name{font-size:2.2rem;}
+.sc-feat .sc-price-block{border-top:none;padding-top:0;margin-top:0;}
+
+/* Mobile: featured stacks */
+@media screen and (max-width:600px){
+  .sc{-webkit-flex:1 1 100%;flex:1 1 100%;padding:28px 5vw;}
+  .sc-feat{-webkit-flex-direction:column;flex-direction:column;gap:20px;}
+  .sc-feat .sc-name{font-size:2rem;}
+  .sc-feat .sc-price{font-size:2.4rem;}
+  .sc-name{font-size:1.65rem;}
+  .sc-price{font-size:2rem;}
+}
 @media screen and (min-width:480px){.svc-feat .svc-name{font-size:2.8rem;}}
 
 /* ─── CEJAS ─── */
@@ -634,119 +660,95 @@ footer{
 
 
 <!-- ═══ SERVICIOS ═══ -->
-<div class="svc-list">
+<div class="sc-grid">
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Pestañas</span>
-    <h3 class="svc-name">Efecto Natural</h3>
-    <p class="svc-desc">El clásico eterno. Pestañas finas colocadas fibra a fibra para un resultado limpio y elegante, perfecto para el día a día. Ideal para una apariencia sofisticada sin artificios.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$65.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$42.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$44.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Pestañas</span>
+    <h3 class="sc-name">Efecto Natural</h3>
+    <p class="sc-desc">El clásico eterno. Pestañas finas colocadas fibra a fibra para un resultado limpio y elegante, perfecto para el día a día. Ideal para una apariencia sofisticada sin artificios.</p>
+    <div class="sc-price-block"><div class="sc-price">$65.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$42.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$44.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Pestañas</span>
-    <h3 class="svc-name">Efecto Pestañina</h3>
-    <p class="svc-desc">Define e intensifica tu mirada con ese acabado oscuro y denso en la base, como si siempre llevaras pestañina puesta. El look favorito para ojos expresivos y llamativos.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$68.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$40.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$44.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Pestañas</span>
+    <h3 class="sc-name">Efecto Pestañina</h3>
+    <p class="sc-desc">Define e intensifica tu mirada con ese acabado oscuro y denso en la base, como si siempre llevaras pestañina puesta. El look favorito para ojos expresivos y llamativos.</p>
+    <div class="sc-price-block"><div class="sc-price">$68.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$40.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$44.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Pestañas</span>
-    <h3 class="svc-name">Efecto Húmedo</h3>
-    <p class="svc-desc">Pestañas agrupadas en pequeños racimos que simulan un aspecto mojado, sensual y dramático. Muy popular en tendencias de moda y belleza internacionales.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$70.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$40.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$45.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Pestañas</span>
+    <h3 class="sc-name">Efecto Húmedo</h3>
+    <p class="sc-desc">Pestañas agrupadas en pequeños racimos que simulan un aspecto mojado, sensual y dramático. Muy popular en tendencias de moda y belleza internacionales.</p>
+    <div class="sc-price-block"><div class="sc-price">$70.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$40.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$45.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Volumen</span>
-    <h3 class="svc-name">Volumen Aura</h3>
-    <p class="svc-desc">La técnica Aura crea un efecto de aureola alrededor de las pestañas que ilumina y engrosa toda la línea, dando una profundidad especial a la mirada. Resulta moderno, delicado y muy elegante.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$80.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$44.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$48.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Volumen</span>
+    <h3 class="sc-name">Volumen Aura</h3>
+    <p class="sc-desc">La técnica Aura crea un efecto de aureola alrededor de las pestañas que ilumina y engrosa toda la línea, dando una profundidad especial a la mirada. Resulta moderno, delicado y muy elegante.</p>
+    <div class="sc-price-block"><div class="sc-price">$80.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$44.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$48.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Volumen</span>
-    <h3 class="svc-name">Volumen Hawaiano</h3>
-    <p class="svc-desc">Inspirado en la naturaleza: pestañas con efecto florido y despeinado que simulan plumas livianas. Voluminoso pero ligero, romántico y original.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$75.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$42.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$48.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Volumen</span>
+    <h3 class="sc-name">Volumen Hawaiano</h3>
+    <p class="sc-desc">Inspirado en la naturaleza: pestañas con efecto florido y despeinado que simulan plumas livianas. Voluminoso pero ligero, romántico y original.</p>
+    <div class="sc-price-block"><div class="sc-price">$75.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$42.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$48.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Volumen</span>
-    <h3 class="svc-name">Volumen Egipcio</h3>
-    <p class="svc-desc">Inspirado en la intensidad del antiguo Egipto: pestañas simétricas, densas y perfectamente alineadas que enmarcan el ojo con poder y majestuosidad.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$85.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$46.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$50.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Volumen</span>
+    <h3 class="sc-name">Volumen Egipcio</h3>
+    <p class="sc-desc">Inspirado en la intensidad del antiguo Egipto: pestañas simétricas, densas y perfectamente alineadas que enmarcan el ojo con poder y majestuosidad.</p>
+    <div class="sc-price-block"><div class="sc-price">$85.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$46.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$50.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Premium</span>
-    <h3 class="svc-name">Volumen 5D</h3>
-    <p class="svc-desc">Cinco pestañas ultra finas en cada pestaña natural crean un volumen extraordinario y una textura mullida e increíblemente densa. La opción más dramática y envidiable.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$90.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Premium</span>
+    <h3 class="sc-name">Volumen 5D</h3>
+    <p class="sc-desc">Cinco pestañas ultra finas en cada pestaña natural crean un volumen extraordinario y una textura mullida e increíblemente densa. La opción más dramática y envidiable.</p>
+    <div class="sc-price-block"><div class="sc-price">$90.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Premium</span>
-    <h3 class="svc-name">Efecto Foxy</h3>
-    <p class="svc-desc">El efecto felino por excelencia. Las pestañas se elevan y alargan hacia las comisuras externas del ojo, creando una mirada levantada, sensual y seductora para quienes quieren impactar.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$90.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Premium</span>
+    <h3 class="sc-name">Efecto Foxy</h3>
+    <p class="sc-desc">El efecto felino por excelencia. Las pestañas se elevan y alargan hacia las comisuras externas del ojo, creando una mirada levantada, sensual y seductora para quienes quieren impactar.</p>
+    <div class="sc-price-block"><div class="sc-price">$90.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <!-- FEATURED -->
-  <div class="svc svc-feat">
-    <span class="feat-badge">✦ Más Solicitado</span>
-    <h3 class="svc-name">Efecto Wispy</h3>
-    <p class="svc-desc">Pestañas con puntas largas intercaladas que crean un patrón irregular, etéreo y coqueto. El favorito de las clientas que buscan ese balance perfecto entre natural y dramático — voluminoso sin perder la delicadeza.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$90.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div>
-    </div>
+  <div class="sc rv">
+    <div class="sc-corner"></div>
+    <span class="sc-badge">Premium</span>
+    <h3 class="sc-name">Efecto Bratz</h3>
+    <p class="sc-desc">Ojos grandes, expresivos y ultra definidos. Pestañas super largas, separadas y con protagonismo total — para quienes no pasan desapercibidas.</p>
+    <div class="sc-price-block"><div class="sc-price">$90.000 <span class="sc-price-cop">COP</span></div><div class="sc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div></div>
   </div>
 
-  <div class="svc">
-    <div class="svc-corner"></div>
-    <span class="svc-badge">Premium</span>
-    <h3 class="svc-name">Efecto Bratz</h3>
-    <p class="svc-desc">Ojos grandes, expresivos y ultra definidos. Pestañas super largas, separadas y con protagonismo total — para quienes no pasan desapercibidas.</p>
-    <div class="svc-price-row">
-      <div class="svc-price">$90.000 <span class="svc-price-cop">COP</span></div>
-      <div class="svc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div>
+  <!-- FEATURED: Wispy -->
+  <div class="sc sc-feat rv">
+    <div>
+      <span class="feat-badge">✦ Más Solicitado</span>
+      <h3 class="sc-name">Efecto Wispy</h3>
+      <p class="sc-desc" style="max-width:460px;margin-top:10px;">Pestañas con puntas largas intercaladas que crean un patrón irregular, etéreo y coqueto. El favorito de las clientas que buscan ese balance perfecto entre natural y dramático — voluminoso sin perder la delicadeza.</p>
+    </div>
+    <div class="sc-price-block">
+      <div class="sc-price">$90.000 <span class="sc-price-cop">COP</span></div>
+      <div class="sc-pills"><div class="pill"><strong>$48.000</strong><span>Retoque 15 días</span></div><div class="pill"><strong>$52.000</strong><span>Retoque 17–21 días</span></div></div>
     </div>
   </div>
 
 </div>
+
 
 
 <!-- ═══ CEJAS ═══ -->
